@@ -26,7 +26,13 @@
 
 - :tanabata_tree: 브랜치
   - 책번호/#단원번호-gitusername, 책번호/#단원번호-gitusername_working 
-  - **[예시]** 1/#2-sezikim, 1/#2-sezikim-working
+  - **[예시]** 1/#2-sezikim-working :arrow_right: 1/#2-sezikim :arrow_right: 1/#2-sezikim-answer
+  - working
+    - 과제, 목표, 요구사항을 읽고 스스로 작성하는 브랜치
+  - (default)
+    - working 브랜치 피드백 사항에 대해서, 수정사항 반영하는 브랜치
+  - answer
+    - 도서로 학습하며 완성하는 브랜치
 
 
 
