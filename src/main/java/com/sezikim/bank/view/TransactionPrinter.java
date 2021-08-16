@@ -8,7 +8,7 @@ import java.util.List;
 import static com.sezikim.bank.model.Transaction.TRANSACTION_FORMAT;
 
 public class TransactionPrinter {
-    public static final String MONTHLY_TRANSACTION_COUNT_FORMAT = "%d월: %d회";
+    private static final String MONTHLY_TRANSACTION_COUNT_FORMAT = "%d월: %d회";
 
     public void printAmountBankStatement(int amountDeposit, int amountWithdrawal) {
         System.out.println("총입금액: " + amountDeposit);

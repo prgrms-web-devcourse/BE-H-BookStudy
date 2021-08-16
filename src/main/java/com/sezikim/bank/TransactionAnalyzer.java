@@ -9,11 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.sezikim.bank.model.Transaction.TRANSACTION_FORMAT;
-
 public class TransactionAnalyzer {
-    public static final String MONTHLY_TRANSACTION_COUNT_FORMAT = "%d월: %d회";
-
     private List<Transaction> transactionList;
     private TransactionPrinter transactionPrinter;
 
