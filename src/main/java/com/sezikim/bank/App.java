@@ -7,6 +7,7 @@ import java.io.*;
 import java.util.List;
 
 public class App {
+
     private static final String filePath = "src/main/resources/data.txt";
 
     public static void main(String[] args) {
@@ -14,10 +15,7 @@ public class App {
         try {
             List<Transaction> transactionList = new CSVFileReader(filePath).readCSVFile();
             TransactionAnalyzer transactionAnalyzer = new TransactionAnalyzer(transactionList);
-            transactionAnalyzer.printAmountBankStatement();
-            transactionAnalyzer.printMonthlyBankStatement();
-            transactionAnalyzer.printMostWithdrawalList();
-            transactionAnalyzer.printMostWithdrawalCategory();
+            transactionAnalyzer.printAnalysis();
         } catch (IOException e) {
             e.printStackTrace();
         }
