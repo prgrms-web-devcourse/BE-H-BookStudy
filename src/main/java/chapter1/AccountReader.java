@@ -31,6 +31,5 @@ public class AccountReader {
 
         }
         print.print();
-        System.out.println("hello");
     }
 }
