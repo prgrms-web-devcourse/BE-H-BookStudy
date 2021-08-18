@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Output implements Transaction, Comparable<Output>{
     private LocalDate date;
     private int money;
-    private String product;
+    private String productName;
 
-    public Output(LocalDate date, int money, String product) {
+    public Output(LocalDate date, int money, String productName) {
         this.date = date;
         this.money = money;
-        this.product = product;
+        this.productName = productName;
     }
 
     public LocalDate getDate() {
@@ -22,7 +22,7 @@ public class Output implements Transaction, Comparable<Output>{
     }
 
     public String getProduct() {
-        return product;
+        return productName;
     }
 
     @Override

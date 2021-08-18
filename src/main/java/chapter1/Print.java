@@ -1,5 +1,9 @@
 package chapter1;
 
+import chapter1.vo.Output;
+
+import java.util.List;
+
 public class Print {
     Account account = Account.getInstance();
 
@@ -31,7 +35,8 @@ public class Print {
 
     void printMostExpendProduct(){
         System.out.println("Answer4: 돈을 가장 많이 소비하는 항목은?");
-        System.out.println(account.mostOutput());
+        System.out.println(account.getMostOutput());
         System.out.println("===================================================");
     }
+
 }
