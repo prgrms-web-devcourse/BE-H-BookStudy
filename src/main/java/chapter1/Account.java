@@ -23,6 +23,7 @@ public class Account {
         list = new ArrayList<>();
         outputList = new ArrayList<>();
         inputList = new ArrayList<>();
+
     }
 
     // 게좌는 한사람당 하나만 가진다는 전제(?)로 싱글턴 패턴을 써보았습니다.
@@ -32,7 +33,6 @@ public class Account {
         }
         return account;
     }
-
 
     public int getTotal() {
         return total;
@@ -68,29 +68,27 @@ public class Account {
     public void getTopTenOutput(){
         Collections.sort(outputList);
         if(outputList.size()< 10){
-            printList(outputList.size());
+            printOutputList(outputList, outputList.size());
         }else{
-            printList(10);
+            printOutputList(outputList,10);
         }
     }
-
-    private void printList(int num) {
-        for(int i = 0; i < num; i++){
-            System.out.println(outputList.get(i).getProduct());
+    void printOutputList(List<Output> list, int size) {
+        for(int i = 0; i < size; i++){
+            System.out.println(list.get(i).getProduct());
         }
     }
-
-    public String mostOutput(){
-        int curTotalExpend = 0;
-        int maxCount = 0;
+    public String getMostOutput(){
+        int curTotalConsumption = 0;
+        int maxValue = 0;
         String ret = null;
         Map<String, Integer> map = new HashMap<>();
 
         for(int i = 0; i < outputList.size(); i++){
             Output out = outputList.get(i);
-            curTotalExpend = map.getOrDefault(out.getProduct(), 0) + out.getMoney();
-            if(maxCount > curTotalExpend){
-                maxCount = curTotalExpend;
+            curTotalConsumption = map.getOrDefault(out.getProduct(), 0) + out.getMoney();
+            if(maxValue > curTotalConsumption){
+                maxValue = curTotalConsumption;
                 ret = out.getProduct();
             }
         }

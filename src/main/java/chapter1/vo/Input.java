@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Input implements Transaction{
     LocalDate date;
     int money;
-    String product;
+    String productName;
 
-    public Input(LocalDate date, int money, String product) {
+    public Input(LocalDate date, int money, String productName) {
         this.date = date;
         this.money = money;
-        this.product = product;
+        this.productName = productName;
     }
 
     public LocalDate getDate() {
@@ -22,6 +22,6 @@ public class Input implements Transaction{
     }
 
     public String getProduct() {
-        return product;
+        return productName;
     }
 }

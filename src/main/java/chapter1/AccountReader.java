@@ -24,22 +24,13 @@ public class AccountReader {
             String[] arr = line.split(",");
 
             LocalDate localDate = LocalDate.parse(arr[0], DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            int money = parseMoney(arr[1]);
+            int money = Integer.parseInt(arr[1]);
             String product = arr[2];
 
             account.addAccountList(localDate, money, product);
 
         }
-
         print.print();
-
-    }
-
-    private int parseMoney(String money) {
-        if (money.charAt(0) == '-') {
-            return Integer.parseInt(money.substring(1)) * (-1);
-        } else {
-            return Integer.parseInt(money);
-        }
+        System.out.println("hello");
     }
 }
