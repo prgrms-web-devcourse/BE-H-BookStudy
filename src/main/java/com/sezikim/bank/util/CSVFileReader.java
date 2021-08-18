@@ -31,13 +31,17 @@ public class CSVFileReader {
         return transactionList;
     }
 
+    /**
+     * CSV 라인 한줄을 읽어, 사용자 입출금 내역 객체를 반환하는 메소드
+     * @param Line (csv파일 문자열 1 Line)
+     * @return Transaction
+     */
     private Transaction createTransaction(String line) {
-        StringTokenizer stk = new StringTokenizer(line, ", ");
+        String[] params = line.split(", ");
+        LocalDate transactionDate = LocalDate.parse(params[0], DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        int transactionValue = Integer.parseInt(params[1]);
+        String transactionContent = params[2];
 
-        LocalDate transactionDate = LocalDate.parse(stk.nextToken(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        int transactionValue = Integer.parseInt(stk.nextToken());
-        String transactionCategory = stk.nextToken();
-
-        return new Transaction(transactionDate, transactionValue, transactionCategory);
+        return new Transaction(transactionDate, transactionValue, transactionContent);
     }
 }

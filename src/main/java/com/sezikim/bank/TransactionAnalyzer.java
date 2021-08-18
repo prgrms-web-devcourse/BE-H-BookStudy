@@ -22,9 +22,13 @@ public class TransactionAnalyzer {
         transactionPrinter.printAmountBankStatement(getAmountDeposit(), getAmountWithdrawal());
         transactionPrinter.printMonthlyBankStatement(getMonthlyTransactionCount());
         transactionPrinter.printMostWithdrawalList(getMostWithdrawalList());
-        transactionPrinter.printMostWithdrawalCategory(getMostWithdrawalCategory());
+        transactionPrinter.printMostWithdrawalContent(getMostWithdrawalContent());
     }
 
+    /**
+     * 총 입금 금액을 구하는 메소드
+     * @return AmountDeposit
+     */
     private int getAmountDeposit() {
         int amountDeposit = 0;
 
@@ -37,6 +41,10 @@ public class TransactionAnalyzer {
         return amountDeposit;
     }
 
+    /**
+     * 총 출금 금액을 구하는 메소드
+     * @return AmountWithdrawal
+     */
     private int getAmountWithdrawal() {
         int amountWithdrawal = 0;
 
@@ -49,6 +57,10 @@ public class TransactionAnalyzer {
         return amountWithdrawal;
     }
 
+    /**
+     * 월별 사용자 입출금 횟수를 구하는 메소드
+     * @return HashMap<Integer, Integer> TransactionCountMap
+     */
     private HashMap<Integer, Integer> getMonthlyTransactionCount() {
         HashMap<Integer, Integer> transactionCountMap = new HashMap<>();
 
@@ -65,19 +77,27 @@ public class TransactionAnalyzer {
         return transactionCountMap;
     }
 
-    private String getMostWithdrawalCategory() {
-        String mostWithdrawalCategory = "";
+    /**
+     * 가장 많이 소비한 항목을 구하는 메소드
+     * @return MostWithdrawalContent
+     */
+    private String getMostWithdrawalContent() {
+        String mostWithdrawalContent = "";
         int min = Integer.MAX_VALUE;
         for (Transaction transaction : transactionList) {
             if (min > transaction.getTransactionValue()) {
                 min = transaction.getTransactionValue();
-                mostWithdrawalCategory = transaction.getTransactionCategory();
+                mostWithdrawalContent = transaction.getTransactionContent();
             }
         }
 
-        return mostWithdrawalCategory;
+        return mostWithdrawalContent;
     }
 
+    /**
+     * 지출이 가장 높은 상위 10건의 출금내역을 구하는 메소드
+     * @return MostWithdrawalList
+     */
     private List<Transaction> getMostWithdrawalList() {
         List<Transaction> transactionSortList = new ArrayList<>();
         transactionSortList.addAll(transactionList);

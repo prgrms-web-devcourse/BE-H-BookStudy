@@ -42,9 +42,9 @@ public class TransactionPrinter {
         System.out.println();
     }
 
-    public void printMostWithdrawalCategory(String mostWithdrawalCategory) {
+    public void printMostWithdrawalContent(String mostWithdrawalContent) {
         System.out.println("지출 최고 항목");
-        System.out.println(mostWithdrawalCategory);
+        System.out.println(mostWithdrawalContent);
         System.out.println();
     }
 }
