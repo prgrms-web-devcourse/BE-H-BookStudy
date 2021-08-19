@@ -1,72 +1,75 @@
 package com.programmers.java;
 
-import com.programmers.java.io.MonthlyDetail;
+import com.programmers.java.model.MoneyDetail;
+import com.programmers.java.model.MonthlyDetail;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MoneyAnalyzer {
-    private List<List<String>> depositDetails;
+    private List<MoneyDetail> transactionDetails;
 
-    public MoneyAnalyzer(List<List<String>> depositDetails) {
-        this.depositDetails = depositDetails;
+    public MoneyAnalyzer(List<MoneyDetail> transactionDetails) {
+        this.transactionDetails = transactionDetails;
     }
 
-    public int getAllIncome(){
-        int allIncome = 0;
-        for (List oneDetail : depositDetails){
-            int anIncome = Integer.parseInt((String) oneDetail.get(1));
-            if(anIncome > 0){
-                allIncome += anIncome;
+    public long getAllIncome(){
+        long allIncome = 0;
+        for (var detail : transactionDetails){
+            long money = detail.getMoney();
+
+            if(money > 0){
+                allIncome += money;
             }
         }
         return allIncome;
     }
 
-    public int getAllSpending(){
-        int allSpending = 0;
+    public long getAllSpending(){
+        long allSpending = 0;
 
-        for (List oneDetail : depositDetails){
-            int anSpending = Integer.parseInt((String) oneDetail.get(1));
+        for (var detail : transactionDetails){
+            long money = detail.getMoney();
 
-            if(anSpending < 0){
-                allSpending += anSpending;
+            if(money < 0){
+                allSpending += money;
             }
         }
         return allSpending;
     }
 
-    public List<String> getTopTenSpending() {
-        List<String> topTenSpending = new ArrayList<String>();
-        sortBySpendingDesc();
+    public List<Long> getTopTenSpending() {
+        List<Long> topTenSpending = new ArrayList<>();
+        List<MoneyDetail> sortBySpendingDesc = sortBySpendingDesc();
 
         int i = 0;
         while(true){
             if(topTenSpending.size() == 10){
                 break;
             }
-            if(Integer.parseInt(depositDetails.get(i).get(1)) > 0){
+            if(sortBySpendingDesc.get(i).getMoney() > 0){
                 break;
             }
 
-            topTenSpending.add(depositDetails.get(i).get(1));
+            topTenSpending.add(sortBySpendingDesc.get(i).getMoney());
             i++;
         }
 
         return topTenSpending;
     }
 
-    public String getTopSpending(){
-        sortBySpendingDesc();
-        return depositDetails.get(0).get(1);
+    public long getTopSpending(){
+        return sortBySpendingDesc().get(0).getMoney();
     }
 
-    public void sortBySpendingDesc(){
-        depositDetails.sort(Comparator.comparing(i -> Integer.parseInt(i.get(1))));
+    private List<MoneyDetail> sortBySpendingDesc(){
+        return transactionDetails.stream().sorted(Comparator.comparing(i -> i.getMoney()))
+                .collect(Collectors.toList());
     }
 
     public MonthlyDetail getMonthlyDetail(int month){
-        return MonthlyDetail.getMonthlyDetail(month, depositDetails);
+        return MonthlyDetail.getMonthlyDetail(month, transactionDetails);
     }
 }
