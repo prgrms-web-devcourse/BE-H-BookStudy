@@ -1,24 +1,19 @@
 package com.sezikim.bank;
 
-import com.sezikim.bank.model.Transaction;
-import com.sezikim.bank.util.CSVFileReader;
+import com.sezikim.bank.util.CSVParser;
+import com.sezikim.bank.util.Parser;
 
-import java.io.*;
-import java.util.List;
+import java.io.IOException;
 
 public class App {
-
-    private static final String CSV_FILE_PATH = "src/main/resources/data.txt";
-
     public static void main(String[] args) {
+        TransactionAnalyzer transactionAnalyzer = new TransactionAnalyzer();
+        Parser parser = new CSVParser();
 
         try {
-            List<Transaction> transactionList = new CSVFileReader(CSV_FILE_PATH).readCSVFile();
-            TransactionAnalyzer transactionAnalyzer = new TransactionAnalyzer(transactionList);
-            transactionAnalyzer.printAnalysis();
+            transactionAnalyzer.analyze(parser);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -2,13 +2,13 @@ package com.sezikim.bank.view;
 
 import com.sezikim.bank.model.Transaction;
 
+import java.time.Month;
 import java.util.HashMap;
 import java.util.List;
 
 import static com.sezikim.bank.model.Transaction.TRANSACTION_FORMAT;
 
 public class TransactionPrinter {
-    private static final String MONTHLY_TRANSACTION_COUNT_FORMAT = "%d월: %d회";
 
     public void printAmountBankStatement(int amountDeposit, int amountWithdrawal) {
         System.out.println("총입금액: " + amountDeposit);
@@ -17,16 +17,16 @@ public class TransactionPrinter {
         System.out.println();
     }
 
-    public void printMonthlyBankStatement(HashMap<Integer, Integer> transactionCountMap) {
+    public void printMonthlyBankStatement(HashMap<Month, Integer> transactionCountMap) {
         System.out.println("월별 입출금 횟수");
 
-        for (int i = 1; i <= 12; ++i) {
-            if (transactionCountMap.containsKey(i)) {
-                System.out.println(String.format(MONTHLY_TRANSACTION_COUNT_FORMAT, i, transactionCountMap.get(i)));
+        for (Month month : Month.values()) {
+            if (transactionCountMap.containsKey(month)) {
+                System.out.println(month + " " + transactionCountMap.get(month));
                 continue;
             }
 
-            System.out.println(String.format(MONTHLY_TRANSACTION_COUNT_FORMAT, i, 0));
+            System.out.println(month + " " + 0);
         }
 
         System.out.println();

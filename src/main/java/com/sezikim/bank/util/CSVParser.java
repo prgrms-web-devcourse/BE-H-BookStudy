@@ -2,31 +2,18 @@ package com.sezikim.bank.util;
 
 import com.sezikim.bank.model.Transaction;
 
-import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
-public class CSVFileReader {
-    private String filePath;
+public class CSVParser implements Parser {
 
-    public CSVFileReader(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public List<Transaction> readCSVFile() throws IOException {
+    public List<Transaction> parseLinesFrom(List<String> lines) {
         List<Transaction> transactionList = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
-
-        String line = null;
-        while ((line = bufferedReader.readLine()) != null) {
-            Transaction transaction = createTransaction(line);
-            transactionList.add(transaction);
+        for (String line : lines) {
+            transactionList.add(parseFrom(line));
         }
-
-        bufferedReader.close();
 
         return transactionList;
     }
@@ -36,7 +23,7 @@ public class CSVFileReader {
      * @param Line (csv파일 문자열 1 Line)
      * @return Transaction
      */
-    private Transaction createTransaction(String line) {
+    public Transaction parseFrom(String line) {
         String[] params = line.split(", ");
         LocalDate transactionDate = LocalDate.parse(params[0], DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         int transactionValue = Integer.parseInt(params[1]);
