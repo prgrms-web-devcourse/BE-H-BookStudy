@@ -1,7 +1,6 @@
 package com.sezikim.bank;
 
 import com.sezikim.bank.model.Transaction;
-import com.sezikim.bank.util.CSVParser;
 import com.sezikim.bank.util.Parser;
 
 import java.io.*;
