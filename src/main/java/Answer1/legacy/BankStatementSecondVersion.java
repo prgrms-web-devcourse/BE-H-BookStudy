@@ -22,7 +22,7 @@ public class BankStatementSecondVersion {
         final Path path = Paths.get(RESOURCES + args[0]);
         final List<String> lines = Files.readAllLines(path);
 
-        final List<BankTransaction> bankTransactions = bankStatementCSVParser.parseLineFromCSV(lines);
+        final List<BankTransaction> bankTransactions = bankStatementCSVParser.parseLinesFrom(lines);
 
         double total = 0d;
         final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
