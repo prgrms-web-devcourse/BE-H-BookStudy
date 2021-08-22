@@ -1,13 +1,13 @@
-package com.programmers.java.io;
+package main.io;
 
-import com.programmers.java.MoneyAnalyzer;
+import main.model.BankStatementProcessor;
 
 public interface Output {
     void printFileError();
-    void printAllIncome(MoneyAnalyzer moneyAnalyzer);
-    void printAllSpending(MoneyAnalyzer moneyAnalyzer);
-    void printTopTenSpending(MoneyAnalyzer moneyAnalyzer);
-    void printTopSpending(MoneyAnalyzer moneyAnalyzer);
-    void printMonthlyDetail(MoneyAnalyzer moneyAnalyzer, int month);
+    void printAllIncome(BankStatementProcessor BankStatementProcessor);
+    void printAllSpending(BankStatementProcessor BankStatementProcessor);
+    void printTopTenSpending(BankStatementProcessor BankStatementProcessor);
+    void printTopSpending(BankStatementProcessor BankStatementProcessor);
+    void printMonthlyDetail(BankStatementProcessor BankStatementProcessor, int month);
 
 }

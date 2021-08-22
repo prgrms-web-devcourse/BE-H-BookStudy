@@ -1,26 +1,20 @@
-package com.programmers.java;
+package main;
 
 
-import com.programmers.java.io.Console;
+import main.model.BankStatementAnalyzer;
+import main.model.BankStatementCSVParser;
 
-import java.io.FileReader;
 import java.io.IOException;
 
 public class Main {
     private static final String FILE_PATH = "src/resources/withdraw.csv";
 
     public static void main(String[] args) {
-        BankStatementCSVParser bankStatementCSVParser = null;
-        Console console = new Console();
-
+        BankStatementCSVParser bankStatementCSVParser = new BankStatementCSVParser();
         try {
-            bankStatementCSVParser = new BankStatementCSVParser(new FileReader(FILE_PATH));
-            MoneyAnalyzer moneyAnalyzer = new MoneyAnalyzer(bankStatementCSVParser.parse());
-            console.printAllRequirements(moneyAnalyzer, 2);
-
+            new BankStatementAnalyzer().analyze("withdraw.csv", bankStatementCSVParser);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

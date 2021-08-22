@@ -1,4 +1,4 @@
-package com.programmers.java.io;
+package main.io;
 
 public interface Input {
 }

@@ -1,6 +1,6 @@
-package com.programmers.java.io;
+package main.io;
 
-import com.programmers.java.MoneyAnalyzer;
+import main.model.BankStatementProcessor;
 
 public class Console implements Input, Output{
 
@@ -10,35 +10,35 @@ public class Console implements Input, Output{
     }
 
     @Override
-    public void printAllIncome(MoneyAnalyzer moneyAnalyzer) {
-        System.out.println(moneyAnalyzer.getAllIncome());
+    public void printAllIncome(BankStatementProcessor BankStatementProcessor) {
+        System.out.println(BankStatementProcessor.getAllIncome());
     }
 
     @Override
-    public void printAllSpending(MoneyAnalyzer moneyAnalyzer) {
-        System.out.println(moneyAnalyzer.getAllSpending());
+    public void printAllSpending(BankStatementProcessor BankStatementProcessor) {
+        System.out.println(BankStatementProcessor.getAllSpending());
     }
 
     @Override
-    public void printTopTenSpending(MoneyAnalyzer moneyAnalyzer) {
-        System.out.println(moneyAnalyzer.getTopTenSpending());
+    public void printTopTenSpending(BankStatementProcessor BankStatementProcessor) {
+        System.out.println(BankStatementProcessor.getTopTenSpending());
     }
 
     @Override
-    public void printTopSpending(MoneyAnalyzer moneyAnalyzer) {
-        System.out.println(moneyAnalyzer.getTopSpending());
+    public void printTopSpending(BankStatementProcessor BankStatementProcessor) {
+        System.out.println(BankStatementProcessor.getTopSpending());
     }
 
     @Override
-    public void printMonthlyDetail(MoneyAnalyzer moneyAnalyzer, int month) {
-        System.out.println(moneyAnalyzer.getMonthlyDetail(month));
+    public void printMonthlyDetail(BankStatementProcessor BankStatementProcessor, int month) {
+        System.out.println(BankStatementProcessor.getMonthlyDetail(month));
     }
 
-    public void printAllRequirements(MoneyAnalyzer moneyAnalyzer, int month){
-        printAllIncome(moneyAnalyzer);
-        printAllSpending(moneyAnalyzer);
-        printTopTenSpending(moneyAnalyzer);
-        printTopSpending(moneyAnalyzer);
-        printMonthlyDetail(moneyAnalyzer, month);
+    public void printAllRequirements(BankStatementProcessor BankStatementProcessor, int month){
+        printAllIncome(BankStatementProcessor);
+        printAllSpending(BankStatementProcessor);
+        printTopTenSpending(BankStatementProcessor);
+        printTopSpending(BankStatementProcessor);
+        printMonthlyDetail(BankStatementProcessor, month);
     }
 }

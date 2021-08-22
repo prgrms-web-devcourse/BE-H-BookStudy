@@ -1,19 +1,22 @@
-package com.programmers.java.model;
+package main.model;
 
-import java.util.List;
 
-public class MoneyDetail {
-    private String date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class BankTransaction {
+
+    private LocalDate date;
     private long money;
     private String location;
 
-    public MoneyDetail(String date, long money, String location) {
+    public BankTransaction(LocalDate date, long money, String location) {
         this.date = date;
         this.money = money;
         this.location = location;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

@@ -1,4 +1,4 @@
-package com.programmers.java;
+package main.model;
 
 public class CSVReader {
 

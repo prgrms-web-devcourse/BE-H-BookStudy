@@ -1,4 +1,4 @@
-package com.programmers.java.model;
+package main.model;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,12 +14,12 @@ public class MonthlyDetail {
         this.spending = spending;
     }
 
-    public static MonthlyDetail getMonthlyDetail(int month, List<MoneyDetail> depositDetails) {
+    public static MonthlyDetail getMonthlyDetail(int month, List<BankTransaction> depositDetails) {
         int monthlyDeposit = 0;
         int monthlySpending = 0;
 
         for (var depositDetail : depositDetails) {
-            LocalDate localDate = LocalDate.parse(depositDetail.getDate(), DATE_FORMMATER);
+            LocalDate localDate = depositDetail.getDate();
 
             if (localDate.getMonthValue() == month) {
                 long money = depositDetail.getMoney();

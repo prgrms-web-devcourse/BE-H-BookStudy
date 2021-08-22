@@ -1,9 +1,6 @@
-package main;
+package main.model;
 
 import main.io.Console;
-import main.model.BankStatementCSVParser;
-import main.model.BankStatementProcessor;
-import main.model.BankTransaction;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class BankStatementAnalyzer {
-    private static final String FILE_PATH = "src/main/resources/";
+    private static final String FILE_PATH = "src/resources/";
     
     public void analyze(String fileName, BankStatementCSVParser bankStatementCSVParser) throws IOException {
         Console console = new Console();
