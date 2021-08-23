@@ -23,7 +23,7 @@ public class BankStatementProcessor {
         double total = 0;
         for (final BankTransaction bankTransaction : bankTransactions) {
             if (bankTransaction.getDate().getMonth() == month) {
-                total+= bankTransaction.getAmount();
+                total += bankTransaction.getAmount();
             }
         }
         return total;
@@ -32,12 +32,36 @@ public class BankStatementProcessor {
     public double calculateTotalForCategory(final String category) {
         double total = 0;
         for (final BankTransaction bankTransaction : bankTransactions) {
-            if (bankTransaction.getDescription().equals(category)){
-                total+= bankTransaction.getAmount();
+            if (bankTransaction.getDescription().equals(category)) {
+                total += bankTransaction.getAmount();
             }
         }
         return total;
     }
 
+    //특정 날짜 범위
+    public double calculateTotalSpecificMonth(final Month start, final Month end) {
+        double total = 0;
+
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if (start.getValue() <= bankTransaction.getDate().getMonth().getValue()
+                    && bankTransaction.getDate().getMonth().getValue() <= end.getValue()) {
+                total += bankTransaction.getAmount();
+            }
+        }
+        return total;
+    }
+
+    //특정 범주의 입출금 내역 얻기
+    public double calculateTotalSpecificAmount(final int start, final int end) {
+        double total = 0;
+
+        for (final BankTransaction bankTransaction : bankTransactions) {
+            if (start <= bankTransaction.getAmount() && bankTransaction.getAmount() <= end) {
+                total += bankTransaction.getAmount();
+            }
+        }
+        return total;
+    }
 
 }
