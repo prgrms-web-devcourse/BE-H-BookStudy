@@ -1,13 +1,17 @@
 package com.sezikim.bank.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Transaction {
     public static final String TRANSACTION_FORMAT = "%-20.20s %-20.20s %-20.20s";
-    private final LocalDate transactionDate;
-    private final int transactionValue;
-    private final String transactionContent;
+    private LocalDate transactionDate;
+    private int transactionValue;
+    private String transactionContent;
+
+    public Transaction(){}
 
     public Transaction(LocalDate transactionDate, int transactionValue, String transactionContent) {
         this.transactionDate = transactionDate;

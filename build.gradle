@@ -12,6 +12,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.4'
+    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.4'
 }
 
 test {
