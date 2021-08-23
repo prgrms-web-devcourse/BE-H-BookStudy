@@ -6,5 +6,7 @@ public class MainApplication {
         final BankStatementParser bankStatementParser = new BankStatementCSVParser();
 
         bankStatementAnalyzer.analyze("data.csv", bankStatementParser);
+        bankStatementAnalyzer.export("data.csv", bankStatementParser);
+
     }
 }

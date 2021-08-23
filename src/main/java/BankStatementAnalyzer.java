@@ -21,6 +21,22 @@ public class BankStatementAnalyzer {
 
     }
 
+    //export file(현재는 text 로 강하게 결합되어있음)
+    public void export(String fileName, BankStatementParser bankStatementParser) throws IOException {
+        final Path path = Paths.get(RESOURCES + fileName);
+        final List<String> lines = Files.readAllLines(path);
+
+        final List<BankTransaction> bankTransactions = bankStatementParser.parseLinesFrom(lines);
+        final var statisticsSummary = new StatisticalSummary(bankTransactions);
+
+        Export exportText= new ExportText(statisticsSummary);
+        Export htmlText = new ExportHtml(statisticsSummary);
+
+        exportText.export();
+        htmlText.export();
+
+    }
+
     public static void collectSummary(BankStatementProcessor bankStatementProcessor){
         System.out.println("The total for all transaction is.. : " + bankStatementProcessor.calculateTotalAmount());
         System.out.println("Transaction in JANUARY : " + bankStatementProcessor.calculateTotalInMonth(Month.JANUARY));
