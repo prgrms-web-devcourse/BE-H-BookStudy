@@ -3,11 +3,9 @@ package com.sezikim.bank;
 import com.sezikim.bank.model.Transaction;
 import com.sezikim.bank.view.TransactionPrinter;
 
+import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TransactionProcessor {
@@ -28,9 +26,10 @@ public class TransactionProcessor {
 
     /**
      * 총 입금 금액을 구하는 메소드
+     *
      * @return AmountDeposit
      */
-    private int getAmountDeposit() {
+    public int getAmountDeposit() {
         int amountDeposit = 0;
 
         for (Transaction transaction : transactionList) {
@@ -44,9 +43,10 @@ public class TransactionProcessor {
 
     /**
      * 총 출금 금액을 구하는 메소드
+     *
      * @return AmountWithdrawal
      */
-    private int getAmountWithdrawal() {
+    public int getAmountWithdrawal() {
         int amountWithdrawal = 0;
 
         for (Transaction transaction : transactionList) {
@@ -60,17 +60,17 @@ public class TransactionProcessor {
 
     /**
      * 월별 사용자 입출금 횟수를 구하는 메소드
+     *
      * @return HashMap<Integer, Integer> TransactionCountMap
      */
-    private HashMap<Month, Integer> getMonthlyTransactionCount() {
+    public HashMap<Month, Integer> getMonthlyTransactionCount() {
         HashMap<Month, Integer> transactionCountMap = new HashMap<>();
+        for (Month month : Month.values()) {
+            transactionCountMap.put(month, 0);
+        }
+
         for (Transaction transaction : transactionList) {
             Month curMonth = transaction.getTransactionDate().getMonth();
-            if (!transactionCountMap.containsKey(curMonth)) {
-                transactionCountMap.put(curMonth, 1);
-                continue;
-            }
-
             transactionCountMap.replace(curMonth, transactionCountMap.get(curMonth) + 1);
         }
 
@@ -78,10 +78,27 @@ public class TransactionProcessor {
     }
 
     /**
+     * 특정 달의 입출금 횟수를 구하는 메소드
+     *
+     * @param month
+     * @return count
+     */
+    public int getSpecificMonthCount(Month month) {
+        int count = 0;
+        for (Transaction transaction : transactionList) {
+            if (transaction.getTransactionDate().getMonth().equals(month))
+                count++;
+        }
+
+        return count;
+    }
+
+    /**
      * 가장 많이 소비한 항목을 구하는 메소드
+     *
      * @return MostWithdrawalContent
      */
-    private String getMostWithdrawalContent() {
+    public String getMostWithdrawalContent() {
         String mostWithdrawalContent = "";
         int min = Integer.MAX_VALUE;
         for (Transaction transaction : transactionList) {
@@ -96,9 +113,10 @@ public class TransactionProcessor {
 
     /**
      * 지출이 가장 높은 상위 10건의 출금내역을 구하는 메소드
+     *
      * @return MostWithdrawalList
      */
-    private List<Transaction> getMostWithdrawalList() {
+    public List<Transaction> getMostWithdrawalList() {
         List<Transaction> transactionSortList = new ArrayList<>(transactionList);
 
         return transactionSortList.stream()
@@ -108,4 +126,24 @@ public class TransactionProcessor {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 특정 달 검색
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public List<Transaction> searchPeriodTransactionList(LocalDate start, LocalDate end) {
+        List<Transaction> periodTransactionList = new ArrayList<>(transactionList);
+
+        Iterator<Transaction> iterator = periodTransactionList.iterator();
+        while (iterator.hasNext()) {
+            Transaction cur = iterator.next();
+            // Month >= 관련 수정!
+            if (!((cur.getTransactionDate().isEqual(start) || cur.getTransactionDate().isEqual(end)) || cur.getTransactionDate().isAfter(start) && cur.getTransactionDate().isBefore(end)))
+                iterator.remove();
+        }
+
+        return periodTransactionList;
+    }
 }
