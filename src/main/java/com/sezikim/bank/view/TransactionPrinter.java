@@ -23,10 +23,7 @@ public class TransactionPrinter {
         for (Month month : Month.values()) {
             if (transactionCountMap.containsKey(month)) {
                 System.out.println(month + " " + transactionCountMap.get(month));
-                continue;
             }
-
-            System.out.println(month + " " + 0);
         }
 
         System.out.println();
