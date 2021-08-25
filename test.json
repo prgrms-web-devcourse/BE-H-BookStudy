@@ -1,0 +1,29 @@
+[ {
+  "date" : "30-01-2017",
+  "money" : -100,
+  "location" : "Deliveroo"
+}, {
+  "date" : "30-01-2017",
+  "money" : -50,
+  "location" : "Tesco"
+}, {
+  "date" : "28-02-2017",
+  "money" : 6000,
+  "location" : "Salary"
+}, {
+  "date" : "28-02-2017",
+  "money" : 2000,
+  "location" : "Royalties"
+}, {
+  "date" : "30-03-2017",
+  "money" : -4000,
+  "location" : "Rent"
+}, {
+  "date" : "28-02-2017",
+  "money" : 3000,
+  "location" : "Tesco"
+}, {
+  "date" : "28-02-2017",
+  "money" : -30,
+  "location" : "Cinema"
+} ]
