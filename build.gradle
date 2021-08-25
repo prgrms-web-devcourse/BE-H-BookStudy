@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.realsoftware'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    // jackson
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0-rc1'
+    // jackson serializer
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0-rc1'
+}
+
+test {
+    useJUnitPlatform()
+}
