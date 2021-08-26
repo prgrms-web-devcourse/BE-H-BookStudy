@@ -10,12 +10,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     // jackson
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0-rc1'
     // jackson serializer
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0-rc1'
+    // hamcrest
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
 }
 
 test {

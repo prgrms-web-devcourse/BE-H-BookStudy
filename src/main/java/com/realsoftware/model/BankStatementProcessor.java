@@ -2,6 +2,7 @@ package com.realsoftware.model;
 
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -39,8 +40,8 @@ public class BankStatementProcessor {
         return allSpending;
     }
 
-    public List<Long> getTopTenSpending() {
-        List<Long> topTenSpending = new ArrayList<>();
+    public List<BankTransaction> getTopTenSpending() {
+        List<BankTransaction> topTenSpending = new ArrayList<>();
         List<BankTransaction> sortBySpendingDesc = sortBySpendingDesc();
 
         int i = 0;
@@ -52,7 +53,7 @@ public class BankStatementProcessor {
                 break;
             }
 
-            topTenSpending.add(sortBySpendingDesc.get(i).getMoney());
+            topTenSpending.add(sortBySpendingDesc.get(i));
             i++;
         }
 
@@ -68,12 +69,12 @@ public class BankStatementProcessor {
                 .collect(Collectors.toList());
     }
 
-    public MonthlyDetail getMonthlyDetail(int month) {
+    public MonthlyDetail getMonthlyDetail(Month month) {
         int monthlyDeposit = 0;
         int monthlySpending = 0;
         for (var bankTransaction : bankTransactions) {
             LocalDate localDate = bankTransaction.getDate();
-            if (localDate.getMonthValue() == month) {
+            if (localDate.getMonth() == month) {
                 long money = bankTransaction.getMoney();
                 if (money > 0) {
                     monthlyDeposit += 1;

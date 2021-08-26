@@ -3,6 +3,8 @@ package com.realsoftware.io;
 
 import com.realsoftware.model.BankStatementProcessor;
 
+import java.time.Month;
+
 public class Console implements Input, Output{
 
     @Override
@@ -31,11 +33,11 @@ public class Console implements Input, Output{
     }
 
     @Override
-    public void printMonthlyDetail(BankStatementProcessor BankStatementProcessor, int month) {
+    public void printMonthlyDetail(BankStatementProcessor BankStatementProcessor, Month month) {
         System.out.println(BankStatementProcessor.getMonthlyDetail(month));
     }
 
-    public void printAllRequirements(BankStatementProcessor bankStatementProcessor, int month){
+    public void printAllRequirements(BankStatementProcessor bankStatementProcessor, Month month){
         printAllIncome(bankStatementProcessor);
         printAllSpending(bankStatementProcessor);
         printTopTenSpending(bankStatementProcessor);
