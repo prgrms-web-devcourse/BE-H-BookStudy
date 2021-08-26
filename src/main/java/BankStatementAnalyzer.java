@@ -31,10 +31,11 @@ public class BankStatementAnalyzer {
 
         Export exportText= new ExportText(statisticsSummary);
         Export htmlText = new ExportHtml(statisticsSummary);
+        Export jsonFile = new ExportJson(statisticsSummary);
 
         exportText.export();
         htmlText.export();
-
+        jsonFile.export();
     }
 
     public static void collectSummary(BankStatementProcessor bankStatementProcessor){
