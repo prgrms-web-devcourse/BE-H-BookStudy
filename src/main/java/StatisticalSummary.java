@@ -6,37 +6,30 @@ public class StatisticalSummary {
     private double max;
     private double sum;
     private double average;
-    private List<BankTransaction> bankTransactions;
 
     StatisticalSummary(List<BankTransaction> bankTransactions){
-        this.bankTransactions = bankTransactions;
-        min = Double.MAX_VALUE;
-        max = Double.MIN_VALUE;
+        //orElse 를 한 이유: 반환 타입이 Optional 이어서 null 인 경우 처리
+        this.min = bankTransactions.stream().mapToDouble(BankTransaction::getAmount).min().orElse(this.min);
+        this.max = bankTransactions.stream().mapToDouble(BankTransaction::getAmount).max().orElse(this.max);
+        this.sum = bankTransactions.stream().mapToDouble(BankTransaction::getAmount).sum();
+        this.average = this.getSum() / bankTransactions.size();
+        max = 0D;
     }
 
+
     public double getMin() {
-        for(BankTransaction bankTransaction: bankTransactions){
-            this.min = Math.min(min, bankTransaction.getAmount());
-        }
         return this.min;
     }
 
     public double getMax() {
-        for(BankTransaction bankTransaction: bankTransactions){
-            this.max = Math.max(max, bankTransaction.getAmount());
-        }
         return this.max;
-
     }
 
     public double getSum() {
-        for(BankTransaction bankTransaction: bankTransactions){
-            this.sum += bankTransaction.getAmount();
-        }
         return this.sum;
     }
 
     public double getAverage() {
-        return this.getSum() / bankTransactions.size();
+        return this.average;
     }
 }
