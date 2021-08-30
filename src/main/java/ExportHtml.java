@@ -4,14 +4,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ExportHtml implements Export{
-    private StatisticalSummary statisticalSummary;
+    private SummaryStatistics summaryStatistics;
     private static final String PATH = "src/main/resources/";
 
-    ExportHtml(StatisticalSummary statisticalSummary){
-        this.statisticalSummary = statisticalSummary;
-    }
+    ExportHtml(){}
 
-    String getStringSummary(){
+    String getStringSummary(SummaryStatistics summaryStatistics){
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -22,10 +20,10 @@ public class ExportHtml implements Export{
                 "<body>\n" +
                 "  <ul>");
 
-        sb.append("<li>min: </li>").append(statisticalSummary.getMin()).append("\n");
-        sb.append("<li>max: </li>").append(statisticalSummary.getMax()).append("\n");
-        sb.append("<li>sum: </li> ").append(statisticalSummary.getSum()).append("\n");
-        sb.append("<li>avg: </li> ").append(statisticalSummary.getAverage()).append("\n");
+        sb.append("<li>min: </li>").append(summaryStatistics.getMin()).append("\n");
+        sb.append("<li>max: </li>").append(summaryStatistics.getMax()).append("\n");
+        sb.append("<li>sum: </li> ").append(summaryStatistics.getSum()).append("\n");
+        sb.append("<li>avg: </li> ").append(summaryStatistics.getAverage()).append("\n");
         sb.append("  </ul>\n" +
                 "</body>\n" +
                 "</html>");
@@ -33,9 +31,9 @@ public class ExportHtml implements Export{
         return sb.toString();
     }
     @Override
-    public void export() {
+    public void export(SummaryStatistics summaryStatistics) {
         File file = new File(PATH + "index.txt");
-        String str =  getStringSummary();
+        String str =  getStringSummary(summaryStatistics);
 
         try {
             BufferedWriter br = new BufferedWriter(new FileWriter(file));

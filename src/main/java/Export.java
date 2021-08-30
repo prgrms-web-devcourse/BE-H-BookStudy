@@ -1,3 +1,3 @@
 public interface Export {
-    void export();
+    void export(SummaryStatistics summaryStatistics);
 }

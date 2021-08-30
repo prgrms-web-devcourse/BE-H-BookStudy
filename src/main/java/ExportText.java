@@ -5,28 +5,23 @@ import java.io.IOException;
 
 public class ExportText implements Export{
 
-    private StatisticalSummary statisticalSummary;
     private static final String PATH = "src/main/resources/";
 
-    ExportText(StatisticalSummary statisticalSummary){
-        this.statisticalSummary = statisticalSummary;
-    };
-
-    String getStringSummary(){
+    String getStringSummary(SummaryStatistics summaryStatistics){
         StringBuilder sb = new StringBuilder();
 
-        sb.append("min : ").append(statisticalSummary.getMin()).append("\n");
-        sb.append("max : ").append(statisticalSummary.getMax()).append("\n");
-        sb.append("sum : ").append(statisticalSummary.getSum()).append("\n");
-        sb.append("avg : ").append(statisticalSummary.getAverage()).append("\n");
+        sb.append("min : ").append(summaryStatistics.getMin()).append("\n");
+        sb.append("max : ").append(summaryStatistics.getMax()).append("\n");
+        sb.append("sum : ").append(summaryStatistics.getSum()).append("\n");
+        sb.append("avg : ").append(summaryStatistics.getAverage()).append("\n");
 
         return sb.toString();
     }
 
     @Override
-    public void export(){
+    public void export(SummaryStatistics summaryStatistics){
         File file = new File(PATH + "text.txt");
-        String str =  getStringSummary();
+        String str =  getStringSummary(summaryStatistics);
 
         try {
             BufferedWriter br = new BufferedWriter(new FileWriter(file));
