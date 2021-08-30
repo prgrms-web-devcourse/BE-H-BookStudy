@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <ul><li>min: </li>-4000.0
+<li>max: </li>6000.0
+<li>sum: </li> 40920.0
+<li>avg: </li> 3897.1428571428573
+  </ul>
+</body>
+</html>
