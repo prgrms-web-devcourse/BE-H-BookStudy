@@ -2,6 +2,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 //csv file 파싱 클래스
@@ -21,11 +22,8 @@ public class BankStatementCSVParser implements BankStatementParser{
 
     @Override
     public List<BankTransaction> parseLinesFrom(List<String> lines) {
-        final List<BankTransaction> bankTransactions = new ArrayList<>();
-        for(final String line: lines){
-            bankTransactions.add(parseFrom(line));
-        }
-        return bankTransactions;
+        // ans: for 문 -> stream 변경
+        return lines.stream().map(this::parseFrom).collect(Collectors.toList());
     }
 
 }
