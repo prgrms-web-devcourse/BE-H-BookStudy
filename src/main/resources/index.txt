@@ -7,8 +7,8 @@
 <body>
   <ul><li>min: </li>-4000.0
 <li>max: </li>6000.0
-<li>sum: </li> 40920.0
-<li>avg: </li> 3897.1428571428573
+경<li>sum: </li> 13640.0
+<li>avg: </li> 974.2857142857143
   </ul>
 </body>
 </html>
