@@ -5,8 +5,13 @@ public class MainApplication {
         final BankStatementAnalyzer bankStatementAnalyzer = new BankStatementAnalyzer();
         final BankStatementParser bankStatementParser = new BankStatementCSVParser();
 
-        bankStatementAnalyzer.analyze("data.csv", bankStatementParser);
-        bankStatementAnalyzer.export("data.csv", bankStatementParser);
+        final Export exporterHtml = new ExportHtml();
+        bankStatementAnalyzer.analyze("data.csv", bankStatementParser, exporterHtml);
 
+        final Export exportJson = new ExportJson();
+        bankStatementAnalyzer.analyze("data.csv", bankStatementParser, exportJson);
+
+        final Export exportText = new ExportText();
+        bankStatementAnalyzer.analyze("data.csv", bankStatementParser, exportText);
     }
 }
