@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <ul><li>min: </li>-4000.0
+<li>max: </li>6000.0
+경<li>sum: </li> 13640.0
+<li>avg: </li> 974.2857142857143
+  </ul>
+</body>
+</html>
